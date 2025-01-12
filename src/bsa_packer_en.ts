@@ -18,17 +18,32 @@
 <context>
     <name>QObject</name>
     <message>
+        <location filename="ArchiveAutoService.cpp" line="12"/>
+        <source>Writing Archive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ArchiveAutoService.cpp" line="15"/>
+        <source>Writing %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="BsaPackerWorker.cpp" line="53"/>
+        <source>Created archive(s):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="ModDtoFactory.cpp" line="58"/>
         <source>Archive name (no file extension):</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ModDtoFactory.cpp" line="87"/>
+        <location filename="ModDtoFactory.cpp" line="92"/>
         <source>File &quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="ModDtoFactory.cpp" line="87"/>
+        <location filename="ModDtoFactory.cpp" line="92"/>
         <source>&quot; already exists. Overwrite?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -65,21 +80,6 @@
     <message>
         <location filename="SettingsService.cpp" line="15"/>
         <source>Compress archives if they do not contain incompressible files.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ArchiveAutoService.cpp" line="12"/>
-        <source>Writing Archive</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ArchiveAutoService.cpp" line="15"/>
-        <source>Writing %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="BsaPackerWorker.cpp" line="53"/>
-        <source>Created archive(s):</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

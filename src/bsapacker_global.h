@@ -1,3 +1,5 @@
+#pragma once
+
 #include <QtCore/QtGlobal>
 
 #if defined(BSAPACKER_LIBRARY)

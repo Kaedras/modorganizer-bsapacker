@@ -1,3 +1,6 @@
+#ifndef MOCKMODDTOFACTORY_H
+#define MOCKMODDTOFACTORY_H
+
 #include <bsapacker/IModDtoFactory.h>
 #include <gmock/gmock.h>
 
@@ -8,3 +11,4 @@ class MockModDtoFactory : public IModDtoFactory
 public:
 	MOCK_METHOD(std::unique_ptr<IModDto>, Create, (), (const));
 };
+#endif // MOCKMODDTOFACTORY_H

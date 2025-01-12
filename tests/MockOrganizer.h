@@ -1,3 +1,6 @@
+#ifndef MOCKORGANIZER_H
+#define MOCKORGANIZER_H
+
 #include "imoinfo.h"
 #include <gmock/gmock.h>
 
@@ -15,6 +18,7 @@ public:
 	MOCK_METHOD(QString, basePath, (), (const, override));
 	MOCK_METHOD(QString, modsPath, (), (const, override));
 	MOCK_METHOD(VersionInfo, appVersion, (), (const, override));
+	MOCK_METHOD(Version, version, (), (const, override));
 	MOCK_METHOD(IModInterface*, createMod, (GuessedValue<QString> &name), (override));
 	MOCK_METHOD(IPluginGame*, getGame, (const QString &gameName), (const, override));
 	MOCK_METHOD(void, modDataChanged, (IModInterface *mod), (override));
@@ -40,6 +44,7 @@ public:
 	MOCK_METHOD(HANDLE, startApplication, (const QString &executable, const QStringList &args, const QString &cwd, const QString &profile, const QString &forcedCustomOverwrite, bool ignoreCustomOverwrite), (override));
 	MOCK_METHOD(bool, waitForApplication, (HANDLE handle, bool refresh, LPDWORD exitCode), (const, override));
 	MOCK_METHOD(bool, onAboutToRun, (const std::function<bool(const QString&)> &func), (override));
+	MOCK_METHOD(bool, onAboutToRun, (const std::function<bool(const QString&, const QDir&, const QString&)> &func), (override));
 	MOCK_METHOD(bool, onFinishedRun, (const std::function<void(const QString&, unsigned int)> &func), (override));
 	MOCK_METHOD(void, refresh, (bool saveChanges), (override));
 	MOCK_METHOD(MOBase::IPluginGame const *, managedGame, (), (const, override));
@@ -53,5 +58,9 @@ public:
 	MOCK_METHOD(bool, onPluginEnabled, (const QString&, const std::function<void()>&), (override));
 	MOCK_METHOD(bool, onPluginDisabled, (const std::function<void(const MOBase::IPlugin*)>&), (override));
 	MOCK_METHOD(bool, onPluginDisabled, (const QString&, const std::function<void()>&), (override));
+
+	MOCK_METHOD(IGameFeatures*, gameFeatures, (), (const, override));
+	MOCK_METHOD(bool, onNextRefresh, (std::function<void()> const& func, bool immediateIfPossible), (override));
 	// clang-format on
 };
+#endif // MOCKORGANIZER_H

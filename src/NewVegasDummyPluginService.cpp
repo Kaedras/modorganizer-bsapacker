@@ -16,7 +16,7 @@ namespace BsaPacker
 		const QString& archiveNameBase) const
 	{
 		const QString& absoluteFileNameNoExtension = modPath + '/' + archiveNameBase;
-		if (!this->m_DummyPluginLogic->canCreateDummyESP(absoluteFileNameNoExtension, bsa_archive_type_e::baFO3))
+		if (!this->m_DummyPluginLogic->canCreateDummyESP(absoluteFileNameNoExtension, libbsarchpp::ArchiveType::FO3))
 		{
 			return false;
 		}

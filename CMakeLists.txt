@@ -1,8 +1,13 @@
 cmake_minimum_required(VERSION 3.16)
+cmake_policy(SET CMP0111 NEW)
 
 set(MO2_CMAKE_DEPRECATED_UIBASE_INCLUDE ON)
 
 project(bsa_packer)
+
+if (UNIX)
+	find_package(OpenGL REQUIRED)
+endif()
 
 add_subdirectory(src)
 

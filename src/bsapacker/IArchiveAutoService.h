@@ -1,7 +1,7 @@
 #ifndef IARCHIVEAUTOSERVICE_H
 #define IARCHIVEAUTOSERVICE_H
 
-#include <libbsarch/bs_archive_auto.hpp>
+#include <libbsarchppWrapper.h>
 #include <bsapacker/IModDto.h>
 
 namespace BsaPacker
@@ -10,7 +10,7 @@ namespace BsaPacker
 	{
 	public:
 		virtual ~IArchiveAutoService() = default;
-		virtual bool CreateBSA(libbsarch::bs_archive_auto*, const QString&, bsa_archive_type_e) const = 0;
+		virtual bool CreateBSA(libbsarch::libbsarchppWrapper*, const QString&, libbsarchpp::ArchiveType) const = 0;
 	};
 }
 

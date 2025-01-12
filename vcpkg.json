@@ -1,9 +1,9 @@
 {
-  "dependencies": ["bext-di", "libbsarchpp"],
+  "dependencies": ["bext-di", "libbsarchpp", "directx-headers"],
   "features": {
     "standalone": {
       "description": "Build Standalone.",
-      "dependencies": ["mo2-cmake"]
+      "dependencies": ["mo2-cmake", "mo2-uibase"]
     },
     "testing": {
       "description": "Build BSA Packer tests.",
@@ -26,7 +26,7 @@
       {
         "kind": "git",
         "repository": "https://github.com/Kaedras/vcpkg-registry",
-        "baseline": "334a0f375bbc02708712422fb12af7080dc1f5fc",
+        "baseline": "32e2aa6e072e1a0001ac3d85171ced3fd0eabbf1",
         "packages": ["mo2-*", "libbsarchpp"]
       }
     ]

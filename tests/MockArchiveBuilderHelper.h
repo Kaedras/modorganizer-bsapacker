@@ -1,3 +1,6 @@
+#ifndef MOCKARCHIVEBUILDERHELPER_H
+#define MOCKARCHIVEBUILDERHELPER_H
+
 #include <bsapacker/IArchiveBuilderHelper.h>
 #include <gmock/gmock.h>
 
@@ -13,3 +16,4 @@ public:
 	MOCK_METHOD(std::vector<std::filesystem::path::string_type>, getRootDirectoryFilenames, (const std::filesystem::path&), (const, override));
 	MOCK_METHOD(bool, doesPathContainFiles, (const std::filesystem::path&, const std::vector<std::filesystem::path::string_type>&), (const, override));
 };
+#endif // MOCKARCHIVEBUILDERHELPER_H

@@ -31,12 +31,12 @@ namespace BsaPacker
 	{
 		QStringList createdArchives;
 		const std::unique_ptr<IModDto> modDto = this->m_ModDtoFactory->Create(); // handles PackerDialog and validation, implements Null Object pattern
-		const std::vector<bsa_archive_type_e> types = this->m_ArchiveBuilderFactory->GetArchiveTypes(modDto.get());
+		const std::vector<libbsarchpp::ArchiveType> types = this->m_ArchiveBuilderFactory->GetArchiveTypes(modDto.get());
 		for (auto&& type : types) {
 			const std::unique_ptr<IArchiveBuilder> builder = this->m_ArchiveBuilderFactory->Create(type, modDto.get());
 			ArchiveBuildDirector director(this->m_SettingsService, builder.get());
 			director.Construct(); // must check if cancelled
-			const std::vector<std::unique_ptr<libbsarch::bs_archive_auto>> archives = builder->getArchives();
+			const std::vector<std::unique_ptr<libbsarch::libbsarchppWrapper>> archives = builder->getArchives();
 			for (const auto& archive : archives) {
 				if (archive) {
 					const QFileInfo fileInfo(this->m_ArchiveNameService->GetArchiveFullPath(type, modDto.get()));

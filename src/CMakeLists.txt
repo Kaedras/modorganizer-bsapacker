@@ -4,14 +4,12 @@ find_package(Qt6 COMPONENTS Concurrent)
 find_path(BEXT_DI_INCLUDE_DIRS "boost/di.hpp")
 find_package(mo2-cmake CONFIG REQUIRED)
 find_package(mo2-uibase CONFIG REQUIRED)
-find_package(mo2-libbsarch CONFIG REQUIRED)
-find_package(mo2-dds-header CONFIG REQUIRED)
-find_package(DirectXTex CONFIG REQUIRED)
+find_package(libbsarchpp CONFIG REQUIRED)
 
 add_library(bsa_packer SHARED)
 mo2_configure_plugin(bsa_packer WARNINGS OFF)
 
-target_link_libraries(bsa_packer PRIVATE mo2::uibase Qt6::Concurrent mo2::libbsarch Microsoft::DirectXTex)
+target_link_libraries(bsa_packer PRIVATE mo2::uibase Qt6::Concurrent PUBLIC libbsarchpp)
 target_include_directories(bsa_packer PRIVATE ${BEXT_DI_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR})
 target_compile_definitions(bsa_packer PRIVATE BSAPACKER_LIBRARY)
 

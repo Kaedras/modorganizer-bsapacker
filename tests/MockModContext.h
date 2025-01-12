@@ -1,4 +1,7 @@
-#include <bsapacker/IModContext.h>
+#ifndef MOCKMODCONTEXT_H
+#define MOCKMODCONTEXT_H
+
+#include "bsapacker/IModContext.h"
 #include <gmock/gmock.h>
 
 using namespace BsaPacker;
@@ -11,3 +14,4 @@ public:
 	MOCK_METHOD(QStringList, GetPlugins, (const QDir& modDirectory), (const, override));
 	MOCK_METHOD(QStringList, GetValidMods, (), (const, override));
 };
+#endif // MOCKMODCONTEXT_H

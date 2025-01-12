@@ -6,7 +6,7 @@
 #include <bsapacker/IArchiveBuilder.h>
 #include <bsapacker/IArchiveBuilderHelper.h>
 #include <bsapacker/IModDto.h>
-#include <libbsarch/libbsarch.h>
+#include <libbsarchppWrapper.h>
 
 namespace BsaPacker
 {
@@ -20,8 +20,8 @@ namespace BsaPacker
 		ArchiveBuilderFactory(ArchiveBuilderFactory&&) = delete;
 		ArchiveBuilderFactory& operator=(ArchiveBuilderFactory&&) = delete;
 
-		[[nodiscard]] std::vector<bsa_archive_type_e> GetArchiveTypes(const IModDto* modDto) const override;
-		[[nodiscard]] std::unique_ptr<IArchiveBuilder> Create(bsa_archive_type_e archiveType, const IModDto* modDto) const override;
+		[[nodiscard]] std::vector<libbsarchpp::ArchiveType> GetArchiveTypes(const IModDto* modDto) const override;
+		[[nodiscard]] std::unique_ptr<IArchiveBuilder> Create(libbsarchpp::ArchiveType archiveType, const IModDto* modDto) const override;
 
 	private:
 		const IArchiveBuilderHelper* m_ArchiveBuilderHelper = nullptr;

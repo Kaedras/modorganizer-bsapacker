@@ -12,11 +12,11 @@ namespace BsaPacker
 	// 2 GiB limit. This does not consider size after compression or share data
 	const qint64 GeneralArchiveBuilder::SIZE_LIMIT = (qint64)1024 * 1024 * 1024 * 2;
 
-	GeneralArchiveBuilder::GeneralArchiveBuilder(const IArchiveBuilderHelper* archiveBuilderHelper, const QDir& rootDir, const bsa_archive_type_t& type)
-		: m_ArchiveBuilderHelper(archiveBuilderHelper), m_RootDirectory(rootDir), m_ArchiveType(type)
+	GeneralArchiveBuilder::GeneralArchiveBuilder(const IArchiveBuilderHelper* archiveBuilderHelper, const QDir& rootDir, const libbsarchpp::ArchiveType& type)
+		: m_ArchiveBuilderHelper(archiveBuilderHelper), m_ArchiveType(type), m_RootDirectory(rootDir)
 	{
 		this->m_Cancelled = false;
-		this->m_Archives.emplace_back(std::make_unique<libbsarch::bs_archive_auto>(this->m_ArchiveType));
+		this->m_Archives.emplace_back(std::make_unique<libbsarchppWrapper>(this->m_ArchiveType));
 	}
 
 	uint32_t GeneralArchiveBuilder::setFiles()
@@ -55,15 +55,12 @@ namespace BsaPacker
 				this->m_Archives.back()->set_compressed(!static_cast<bool>(incompressibleFiles));
 				incompressibleFiles = 0;
 				compressibleFiles = 0;
-				this->m_Archives.emplace_back(std::make_unique<libbsarch::bs_archive_auto>(this->m_ArchiveType));
+				this->m_Archives.emplace_back(std::make_unique<libbsarch::libbsarchppWrapper>(this->m_ArchiveType));
 				this->setShareData(true);
 			}
 
 			this->m_ArchiveBuilderHelper->isIncompressible(filepath.toStdWString()) ? ++incompressibleFiles : ++compressibleFiles;
-			auto fileBlob = disk_blob(
-				 dirString,
-				 filepath.toStdWString());
-			this->m_Archives.back()->add_file_from_disk(fileBlob);
+			this->m_Archives.back()->add_file_from_disk(this->m_RootDirectory.filesystemPath(), fileInfo.filesystemAbsolutePath());
 			qDebug() << "file is: " << filepath;
 		}
 		this->m_Archives.back()->set_compressed(!static_cast<bool>(incompressibleFiles));
@@ -75,7 +72,7 @@ namespace BsaPacker
 		this->m_Archives.back()->set_share_data(value);
 	}
 
-	std::vector<std::unique_ptr<libbsarch::bs_archive_auto>> GeneralArchiveBuilder::getArchives()
+	std::vector<std::unique_ptr<libbsarch::libbsarchppWrapper>> GeneralArchiveBuilder::getArchives()
 	{
 		return std::move(this->m_Archives);
 	}

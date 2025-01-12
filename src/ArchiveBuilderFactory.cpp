@@ -13,45 +13,45 @@ namespace BsaPacker
 	{
 	}
 
-	std::vector<bsa_archive_type_e> ArchiveBuilderFactory::GetArchiveTypes(const IModDto* modDto) const
+	std::vector<libbsarchpp::ArchiveType> ArchiveBuilderFactory::GetArchiveTypes(const IModDto* modDto) const
 	{
 		switch (modDto->NexusId()) {
 			case NexusId::Morrowind:
-				return std::vector<bsa_archive_type_e> { baTES3 };
+				return std::vector{libbsarchpp::TES3 };
 			case NexusId::Oblivion:
-				return std::vector<bsa_archive_type_e> { baTES4 };
+				return std::vector{libbsarchpp::TES4 };
 			case NexusId::Fallout3:
 			case NexusId::NewVegas:
 			case NexusId::Skyrim:
 			case NexusId::Enderal:
-				return std::vector<bsa_archive_type_e> { baFO3 };
+				return std::vector{libbsarchpp::FO3 };
 			case NexusId::SkyrimSE:
 			case NexusId::EnderalSE:
-				return std::vector<bsa_archive_type_e> { baSSE };
+				return std::vector{libbsarchpp::SSE };
 			case NexusId::Fallout4:
-				return std::vector<bsa_archive_type_e> { baFO4, baFO4dds };
+				return std::vector{libbsarchpp::FO4, libbsarchpp::FO4dds };
 			case NexusId::Starfield:
-				return std::vector<bsa_archive_type_e> { baSF, baSFdds };
+				return std::vector{libbsarchpp::SF, libbsarchpp::SFdds };
 			default:
-				return std::vector<bsa_archive_type_e> { baNone };
+				return std::vector{ libbsarchpp::none };
 		}
 	}
 
-	std::unique_ptr<IArchiveBuilder> ArchiveBuilderFactory::Create(const bsa_archive_type_e archiveType, const IModDto* modDto) const
+	std::unique_ptr<IArchiveBuilder> ArchiveBuilderFactory::Create(const libbsarchpp::ArchiveType archiveType, const IModDto* modDto) const
 	{
 		switch (archiveType) {
-			case baTES3:
-			case baTES4:
-			case baFO3:
-			case baSSE:
+			case libbsarchpp::TES3:
+			case libbsarchpp::TES4:
+			case libbsarchpp::FO3:
+			case libbsarchpp::SSE:
 				return std::make_unique<GeneralArchiveBuilder>(this->m_ArchiveBuilderHelper, modDto->Directory(), archiveType);
-			case baFO4:
-			case baSF:
+			case libbsarchpp::FO4:
+			case libbsarchpp::SF:
 				return std::make_unique<TexturelessArchiveBuilder>(this->m_ArchiveBuilderHelper, modDto->Directory(), archiveType);
-			case baFO4dds:
-			case baSFdds:
+			case libbsarchpp::FO4dds:
+			case libbsarchpp::SFdds:
 				return std::make_unique<TextureArchiveBuilder>(this->m_ArchiveBuilderHelper, modDto->Directory(), archiveType);
-			case baNone:
+			case libbsarchpp::none:
 			default:
 				return std::make_unique<NullArchiveBuilder>();
 		}

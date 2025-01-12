@@ -70,6 +70,11 @@ namespace BsaPacker
 			}
 			archive_name_base = name;
 		} else {
+			if (pluginName.isEmpty())
+			{
+				qWarning("Plugin name cannot be empty. Cancelling archive creation.");
+				return nullptr;
+			}
 			archive_name_base = pluginName.chopped(4); // trims the file extension off
 		}
 		return archive_name_base;

@@ -1,3 +1,6 @@
+#ifndef MOCKPACKERDIALOG_H
+#define MOCKPACKERDIALOG_H
+
 #include <bsapacker/IPackerDialog.h>
 #include <gmock/gmock.h>
 
@@ -15,3 +18,4 @@ public:
 	MOCK_METHOD(int, Exec, (), (override));
 	MOCK_METHOD(void, RefreshOkButton, (), (override));
 };
+#endif // MOCKPACKERDIALOG_H

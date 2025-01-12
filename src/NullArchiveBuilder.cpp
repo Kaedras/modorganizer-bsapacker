@@ -11,7 +11,7 @@ namespace BsaPacker
 	{
 	}
 
-	std::vector<std::unique_ptr<libbsarch::bs_archive_auto>> NullArchiveBuilder::getArchives()
+	std::vector<std::unique_ptr<libbsarch::libbsarchppWrapper>> NullArchiveBuilder::getArchives()
 	{
 		return {};
 	}
