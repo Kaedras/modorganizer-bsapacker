@@ -75,6 +75,8 @@ namespace libbsarch
         std::vector<std::filesystem::path> entries_;
         std::unique_ptr<libbsarchpp::Bsa> m_archive = nullptr;
         libbsarchpp::ArchiveType m_archiveType;
+        bool m_shareData = false;
+        bool m_compressed = false;
     };
 }
 #endif // LIBBSARCHPPWRAPPER_H

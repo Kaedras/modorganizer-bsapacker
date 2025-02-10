@@ -30,7 +30,7 @@ namespace libbsarch
     void libbsarchppWrapper::add_file_from_memory(const std::filesystem::path& path_in_archive,
                                                   const std::vector<char>& data)
     {
-        files_.emplace_back(bs_packed_file(path_in_archive, data));
+        files_.emplace_back(path_in_archive, data);
     }
 
     void libbsarchppWrapper::add_file(const bs_packed_file& file)
@@ -40,7 +40,7 @@ namespace libbsarch
 
     void libbsarchppWrapper::set_compressed(bool value)
     {
-        m_archive->setCompressed(value);
+        m_compressed = value;
     }
 
     void libbsarchppWrapper::set_dds_base_path(const std::filesystem::path& dds_base_path)
@@ -50,7 +50,7 @@ namespace libbsarch
 
     void libbsarchppWrapper::set_share_data(bool value)
     {
-        m_archive->setShareData(value);
+        m_shareData = value;
     }
 
     void libbsarchppWrapper::extract_all(const std::filesystem::path& directory, bool overwrite_current_files)
@@ -89,6 +89,8 @@ namespace libbsarch
         }
 
         libbsarchpp::Bsa bsa(archive_path, m_archiveType, entries_);
+        bsa.setCompressed(m_compressed);
+        bsa.setShareData(m_shareData);
 
         for (const auto& file : files_)
         {
