@@ -31,27 +31,27 @@ namespace BsaPacker
 		}
 	}
 
-	QString ArchiveNameService::GetArchiveFullPath(const bsa_archive_type_e type, const IModDto* modDto) const
+	QString ArchiveNameService::GetArchiveFullPath(const libbsarchpp::ArchiveType type, const IModDto* modDto) const
 	{
 		const QString& pathNoExt(QDir::toNativeSeparators(modDto->Directory() + '/' + modDto->ArchiveName() + this->Infix(type)));
 		const QString& suffix = this->Suffix(pathNoExt);
 		return QDir::toNativeSeparators(pathNoExt + suffix + this->GetFileExtension());
 	}
 
-	QString ArchiveNameService::Infix(const bsa_archive_type_e type) const
+	QString ArchiveNameService::Infix(const libbsarchpp::ArchiveType type) const
 	{
 		switch (type) {
-		case baFO4:
-		case baSF:
+		case libbsarchpp::FO4:
+		case libbsarchpp::SF:
 			return QStringLiteral(" - Main");
-		case baSFdds:
-		case baFO4dds:
+		case libbsarchpp::SFdds:
+		case libbsarchpp::FO4dds:
 			return QStringLiteral(" - Textures");
-		case baTES3:
-		case baTES4:
-		case baFO3:
-		case baSSE:
-		case baNone:
+		case libbsarchpp::TES3:
+		case libbsarchpp::TES4:
+		case libbsarchpp::FO3:
+		case libbsarchpp::SSE:
+		case libbsarchpp::none:
 		default:
 			return QString();
 		};

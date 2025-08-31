@@ -12,11 +12,11 @@ namespace BsaPacker
 	// 2 GiB limit. This does not consider size after compression or share data
 	const qint64 GeneralArchiveBuilder::SIZE_LIMIT = (qint64)1024 * 1024 * 1024 * 2;
 
-	GeneralArchiveBuilder::GeneralArchiveBuilder(const IArchiveBuilderHelper* archiveBuilderHelper, const QDir& rootDir, const bsa_archive_type_t& type)
+	GeneralArchiveBuilder::GeneralArchiveBuilder(const IArchiveBuilderHelper* archiveBuilderHelper, const QDir& rootDir, const libbsarchpp::ArchiveType& type)
 		: m_ArchiveBuilderHelper(archiveBuilderHelper), m_RootDirectory(rootDir), m_ArchiveType(type)
 	{
 		this->m_Cancelled = false;
-		this->m_Archives.emplace_back(std::make_unique<libbsarch::bs_archive_auto>(this->m_ArchiveType));
+		this->m_Archives.emplace_back(std::make_unique<libbsarch::libbsarchppWrapper>(this->m_ArchiveType));
 	}
 
 	uint32_t GeneralArchiveBuilder::setFiles()
@@ -55,7 +55,7 @@ namespace BsaPacker
 				this->m_Archives.back()->set_compressed(!static_cast<bool>(incompressibleFiles));
 				incompressibleFiles = 0;
 				compressibleFiles = 0;
-				this->m_Archives.emplace_back(std::make_unique<libbsarch::bs_archive_auto>(this->m_ArchiveType));
+				this->m_Archives.emplace_back(std::make_unique<libbsarch::libbsarchppWrapper>(this->m_ArchiveType));
 				this->setShareData(true);
 			}
 
@@ -75,7 +75,7 @@ namespace BsaPacker
 		this->m_Archives.back()->set_share_data(value);
 	}
 
-	std::vector<std::unique_ptr<libbsarch::bs_archive_auto>> GeneralArchiveBuilder::getArchives()
+	std::vector<std::unique_ptr<libbsarch::libbsarchppWrapper>> GeneralArchiveBuilder::getArchives()
 	{
 		return std::move(this->m_Archives);
 	}

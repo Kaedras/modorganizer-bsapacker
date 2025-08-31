@@ -29,7 +29,7 @@ namespace BsaPackerTests
 			auto result = TexturelessArchiveBuilder(
 				naggyMockArchiveBuilderHelper,
 				QDir(),
-				baNone);
+				libbsarchpp::ArchiveType::none);
 		);
 	}
 }

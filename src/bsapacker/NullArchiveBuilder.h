@@ -16,7 +16,7 @@ namespace BsaPacker
 
 		uint32_t setFiles() override;
 		void setShareData(bool) override;
-		[[nodiscard]] std::vector<std::unique_ptr<libbsarch::bs_archive_auto>> getArchives() override;
+		[[nodiscard]] std::vector<std::unique_ptr<libbsarch::libbsarchppWrapper>> getArchives() override;
 		[[nodiscard]] uint32_t getFileCount() const override;
 		[[nodiscard]] QString getRootPath() const override;
 

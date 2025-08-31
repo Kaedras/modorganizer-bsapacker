@@ -4,7 +4,6 @@
 #include <QDirIterator>
 #include <QApplication>
 #include <QDebug>
-#include "DirectXTex.h"
 
 using namespace libbsarch;
 
@@ -14,11 +13,11 @@ namespace BsaPacker
 	// This does not consider size after compression or share data
 	const qint64 TextureArchiveBuilder::SIZE_LIMIT = (qint64)1024 * 1024 * 1024 * 4;
 
-	TextureArchiveBuilder::TextureArchiveBuilder(const IArchiveBuilderHelper* archiveBuilderHelper, const QDir& rootDir, const bsa_archive_type_t& type)
+	TextureArchiveBuilder::TextureArchiveBuilder(const IArchiveBuilderHelper* archiveBuilderHelper, const QDir& rootDir, const libbsarchpp::ArchiveType& type)
 		: m_ArchiveBuilderHelper(archiveBuilderHelper), m_RootDirectory(rootDir), m_ArchiveType(type)
 	{
 		this->m_Cancelled = false;
-		this->m_Archives.emplace_back(std::make_unique<libbsarch::bs_archive_auto>(this->m_ArchiveType));
+		this->m_Archives.emplace_back(std::make_unique<libbsarchppWrapper>(this->m_ArchiveType));
 	}
 
 	uint32_t TextureArchiveBuilder::setFiles()
@@ -54,9 +53,9 @@ namespace BsaPacker
 			if (currentSize > SIZE_LIMIT) {
 				currentSize = fileInfo.size();
 				this->m_Archives.back()->set_compressed(true);
-				this->m_Archives.back()->set_dds_callback(TextureArchiveBuilder::DDSCallback, this->getRootPath().toStdWString());
+				this->m_Archives.back()->set_dds_base_path(this->getRootPath().toStdWString());
 				compressibleFiles = 0;
-				this->m_Archives.emplace_back(std::make_unique<libbsarch::bs_archive_auto>(this->m_ArchiveType));
+				this->m_Archives.emplace_back(std::make_unique<libbsarch::libbsarchppWrapper>(this->m_ArchiveType));
 				this->setShareData(true);
 			}
 
@@ -68,7 +67,7 @@ namespace BsaPacker
 			qDebug() << "file is: " << filepath;
 		}
 		this->m_Archives.back()->set_compressed(true);
-		this->m_Archives.back()->set_dds_callback(TextureArchiveBuilder::DDSCallback, this->getRootPath().toStdWString());
+		this->m_Archives.back()->set_dds_base_path(this->getRootPath().toStdWString());
 		return compressibleFiles;
 	}
 
@@ -77,7 +76,7 @@ namespace BsaPacker
 		this->m_Archives.back()->set_share_data(value);
 	}
 
-	std::vector<std::unique_ptr<libbsarch::bs_archive_auto>> TextureArchiveBuilder::getArchives()
+	std::vector<std::unique_ptr<libbsarch::libbsarchppWrapper>> TextureArchiveBuilder::getArchives()
 	{
 		return std::move(this->m_Archives);
 	}
@@ -97,20 +96,4 @@ namespace BsaPacker
 		this->m_Cancelled = true;
 	}
 
-	void TextureArchiveBuilder::DDSCallback(bsa_archive_t, const wchar_t* file_path, bsa_dds_info_t* dds_info, void* context)
-	{
-		const auto& path = *static_cast<std::wstring*>(context) + L'/' + std::wstring(file_path);
-
-		auto image = std::make_unique<DirectX::ScratchImage>();
-		DirectX::TexMetadata info;
-
-		const auto hr = LoadFromDDSFile(path.c_str(), DirectX::DDS_FLAGS_NONE, &info, *image);
-
-		if (FAILED(hr))
-			throw std::runtime_error("Failed to open DDS");
-
-		dds_info->width = static_cast<uint32_t>(info.width);
-		dds_info->height = static_cast<uint32_t>(info.height);
-		dds_info->mipmaps = static_cast<uint32_t>(info.mipLevels);
-	}
 } // namespace BsaPacker

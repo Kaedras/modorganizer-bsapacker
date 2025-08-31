@@ -7,6 +7,7 @@
 #include "NexusId.h"
 
 using namespace BsaPacker;
+using libbsarchpp::ArchiveType;
 using ::testing::NaggyMock;
 using ::testing::Eq;
 using ::testing::Return;
@@ -161,7 +162,7 @@ namespace BsaPackerTests
 		// Arrange
 		auto sut = ArchiveNameService(
 				naggyMockModContext);
-		auto type = bsa_archive_type_e::baFO4;
+		auto type = ArchiveType::FO4;
 		auto dto = ModDto(0, "C:/directory", "archive", ".ba2");
 		ON_CALL(*naggyMockModContext, GetNexusId())
 			.WillByDefault(Return(NexusId::Fallout4));
@@ -178,7 +179,7 @@ namespace BsaPackerTests
 		// Arrange
 		auto sut = ArchiveNameService(
 				naggyMockModContext);
-		auto type = bsa_archive_type_e::baFO4dds;
+		auto type = ArchiveType::FO4dds;
 		auto dto = ModDto(0, "C:/directory", "archive", ".ba2");
 		ON_CALL(*naggyMockModContext, GetNexusId())
 			.WillByDefault(Return(NexusId::Fallout4));
@@ -195,7 +196,7 @@ namespace BsaPackerTests
 		// Arrange
 		auto sut = ArchiveNameService(
 				naggyMockModContext);
-		auto type = bsa_archive_type_e::baTES3;
+		auto type = ArchiveType::TES3;
 		auto dto = ModDto(0, "C:/directory", "archive", ".ba2");
 		ON_CALL(*naggyMockModContext, GetNexusId())
 			.WillByDefault(Return(NexusId::Morrowind));
@@ -212,7 +213,7 @@ namespace BsaPackerTests
 		// Arrange
 		auto sut = ArchiveNameService(
 				naggyMockModContext);
-		auto type = bsa_archive_type_e::baTES3;
+		auto type = ArchiveType::TES3;
 		auto dto = ModDto(0, "C:/directory", "archive", ".ba2");
 		ON_CALL(*naggyMockModContext, GetNexusId())
 			.WillByDefault(Return(NexusId::Oblivion));
@@ -229,7 +230,7 @@ namespace BsaPackerTests
 		// Arrange
 		auto sut = ArchiveNameService(
 				naggyMockModContext);
-		auto type = bsa_archive_type_e::baFO3;
+		auto type = ArchiveType::FO3;
 		auto dto = ModDto(0, "C:/directory", "archive", ".ba2");
 		ON_CALL(*naggyMockModContext, GetNexusId())
 			.WillByDefault(Return(NexusId::Fallout3));
@@ -246,7 +247,7 @@ namespace BsaPackerTests
 		// Arrange
 		auto sut = ArchiveNameService(
 				naggyMockModContext);
-		auto type = bsa_archive_type_e::baSSE;
+		auto type = ArchiveType::SSE;
 		auto dto = ModDto(0, "C:/directory", "archive", ".ba2");
 		ON_CALL(*naggyMockModContext, GetNexusId())
 			.WillByDefault(Return(NexusId::SkyrimSE));

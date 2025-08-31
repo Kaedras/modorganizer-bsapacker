@@ -14,7 +14,7 @@ namespace BsaPacker
 	{
 	}
 
-	bool DummyPluginLogic::canCreateDummyESP(const QString& fileNameNoExtension, const bsa_archive_type_e type) const
+	bool DummyPluginLogic::canCreateDummyESP(const QString& fileNameNoExtension, const libbsarchpp::ArchiveType type) const
 	{
 		const std::array<QString, 2>& fileList = {
 			fileNameNoExtension + ".esm",
@@ -23,7 +23,7 @@ namespace BsaPacker
 		return this->canCreateDummy(fileList, fileNameNoExtension, type);
 	}
 
-	bool DummyPluginLogic::canCreateDummyESL(const QString& fileNameNoExtension, const bsa_archive_type_e type) const
+	bool DummyPluginLogic::canCreateDummyESL(const QString& fileNameNoExtension, const libbsarchpp::ArchiveType type) const
 	{
 		const std::array<QString, 3>& fileList = {
 			fileNameNoExtension + ".esm",
@@ -36,7 +36,7 @@ namespace BsaPacker
 	template<std::size_t SIZE>
 	bool DummyPluginLogic::canCreateDummy(const std::array<QString, SIZE>& fileList,
 		const QString& fileNameNoExtension,
-		const bsa_archive_type_e type) const
+		const libbsarchpp::ArchiveType type) const
 	{
 		const QFileInfo archive(fileNameNoExtension + this->m_ArchiveNameService->Infix(type) + this->m_ArchiveNameService->GetFileExtension());
 		if (!(archive.exists() && archive.isFile())) {

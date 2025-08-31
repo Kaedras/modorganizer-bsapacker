@@ -14,7 +14,7 @@ namespace BsaPacker
 		const QString& archiveNameBase) const
 	{
 		const QString& fileNameNoExtension = modPath + '/' + archiveNameBase;
-		if (!this->m_DummyPluginLogic->canCreateDummyESL(fileNameNoExtension, bsa_archive_type_e::baSF) && !this->m_DummyPluginLogic->canCreateDummyESL(fileNameNoExtension, bsa_archive_type_e::baSFdds))
+		if (!this->m_DummyPluginLogic->canCreateDummyESL(fileNameNoExtension, libbsarchpp::ArchiveType::SF) && !this->m_DummyPluginLogic->canCreateDummyESL(fileNameNoExtension, libbsarchpp::ArchiveType::SFdds))
 		{
 			return false;
 		}

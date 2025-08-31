@@ -47,7 +47,7 @@ namespace BsaPackerTests
 		auto result = sut.GetArchiveTypes(&dto);
 
 		// Assert
-		EXPECT_EQ(bsa_archive_type_e::baTES3, result.at(0));
+		EXPECT_EQ(libbsarchpp::ArchiveType::TES3, result.at(0));
 	}
 
 	TEST_F(ArchiveBuilderFactoryFacts, GetArchiveTypes_WhenNexusIdIsOblivion_ReturnsbaTES4)
@@ -60,7 +60,7 @@ namespace BsaPackerTests
 		auto result = sut.GetArchiveTypes(&dto);
 
 		// Assert
-		EXPECT_EQ(bsa_archive_type_e::baTES4, result.at(0));
+		EXPECT_EQ(libbsarchpp::ArchiveType::TES4, result.at(0));
 	}
 
 	TEST_F(ArchiveBuilderFactoryFacts, GetArchiveTypes_WhenNexusIdIsFallout3_ReturnsbaFO3)
@@ -73,7 +73,7 @@ namespace BsaPackerTests
 		auto result = sut.GetArchiveTypes(&dto);
 
 		// Assert
-		EXPECT_EQ(bsa_archive_type_e::baFO3, result.at(0));
+		EXPECT_EQ(libbsarchpp::ArchiveType::FO3, result.at(0));
 	}
 
 	TEST_F(ArchiveBuilderFactoryFacts, GetArchiveTypes_WhenNexusIdIsNewVegas_ReturnsbaFO3)
@@ -86,7 +86,7 @@ namespace BsaPackerTests
 		auto result = sut.GetArchiveTypes(&dto);
 
 		// Assert
-		EXPECT_EQ(bsa_archive_type_e::baFO3, result.at(0));
+		EXPECT_EQ(libbsarchpp::ArchiveType::FO3, result.at(0));
 	}
 
 	TEST_F(ArchiveBuilderFactoryFacts, GetArchiveTypes_WhenNexusIdIsSkyrim_ReturnsbaFO3)
@@ -99,7 +99,7 @@ namespace BsaPackerTests
 		auto result = sut.GetArchiveTypes(&dto);
 
 		// Assert
-		EXPECT_EQ(bsa_archive_type_e::baFO3, result.at(0));
+		EXPECT_EQ(libbsarchpp::ArchiveType::FO3, result.at(0));
 	}
 
 	TEST_F(ArchiveBuilderFactoryFacts, GetArchiveTypes_WhenNexusIdIsSkyrimSE_ReturnsbaSSE)
@@ -112,7 +112,7 @@ namespace BsaPackerTests
 		auto result = sut.GetArchiveTypes(&dto);
 
 		// Assert
-		EXPECT_EQ(bsa_archive_type_e::baSSE, result.at(0));
+		EXPECT_EQ(libbsarchpp::ArchiveType::SSE, result.at(0));
 	}
 
 	TEST_F(ArchiveBuilderFactoryFacts, GetArchiveTypes_WhenNexusIdIsFallout4_ReturnsbaFO4andbaFO4dds)
@@ -125,15 +125,15 @@ namespace BsaPackerTests
 		auto result = sut.GetArchiveTypes(&dto);
 
 		// Assert
-		EXPECT_EQ(bsa_archive_type_e::baFO4, result.at(0));
-		EXPECT_EQ(bsa_archive_type_e::baFO4dds, result.at(1));
+		EXPECT_EQ(libbsarchpp::ArchiveType::FO4, result.at(0));
+		EXPECT_EQ(libbsarchpp::ArchiveType::FO4dds, result.at(1));
 	}
 
 	TEST_F(ArchiveBuilderFactoryFacts, Create_WhenArchiveTypeNone_ReturnsNullArchiveBuilder)
 	{
 		// Arrange
 		auto sut = ArchiveBuilderFactory(naggyMockArchiveBuilderHelper);
-		auto type = bsa_archive_type_e::baNone;
+		auto type = libbsarchpp::ArchiveType::none;
 
 		// Act
 		auto returned = sut.Create(type, nullptr);
@@ -148,7 +148,7 @@ namespace BsaPackerTests
 	{
 		// Arrange
 		auto sut = ArchiveBuilderFactory(naggyMockArchiveBuilderHelper);
-		auto type = bsa_archive_type_e::baTES3;
+		auto type = libbsarchpp::ArchiveType::TES3;
 		auto dto = ModDto(0, "", "", "");
 
 		// Act
@@ -164,7 +164,7 @@ namespace BsaPackerTests
 	{
 		// Arrange
 		auto sut = ArchiveBuilderFactory(naggyMockArchiveBuilderHelper);
-		auto type = bsa_archive_type_e::baTES4;
+		auto type = libbsarchpp::ArchiveType::TES4;
 		auto dto = ModDto(0, "", "", "");
 
 		// Act
@@ -180,7 +180,7 @@ namespace BsaPackerTests
 	{
 		// Arrange
 		auto sut = ArchiveBuilderFactory(naggyMockArchiveBuilderHelper);
-		auto type = bsa_archive_type_e::baFO3;
+		auto type = libbsarchpp::ArchiveType::FO3;
 		auto dto = ModDto(0, "", "", "");
 
 		// Act
@@ -196,7 +196,7 @@ namespace BsaPackerTests
 	{
 		// Arrange
 		auto sut = ArchiveBuilderFactory(naggyMockArchiveBuilderHelper);
-		auto type = bsa_archive_type_e::baSSE;
+		auto type = libbsarchpp::ArchiveType::SSE;
 		auto dto = ModDto(0, "", "", "");
 
 		// Act
@@ -212,7 +212,7 @@ namespace BsaPackerTests
 	{
 		// Arrange
 		auto sut = ArchiveBuilderFactory(naggyMockArchiveBuilderHelper);
-		auto type = bsa_archive_type_e::baFO4;
+		auto type = libbsarchpp::ArchiveType::FO4;
 		auto dto = ModDto(0, "", "", "");
 
 		// Act
@@ -228,7 +228,7 @@ namespace BsaPackerTests
 	{
 		// Arrange
 		auto sut = ArchiveBuilderFactory(naggyMockArchiveBuilderHelper);
-		auto type = bsa_archive_type_e::baFO4dds;
+		auto type = libbsarchpp::ArchiveType::FO4dds;
 		auto dto = ModDto(0, "", "", "");
 
 		// Act
