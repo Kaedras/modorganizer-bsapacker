@@ -6,3 +6,4 @@ CMakeLists.txt.user
 .vs
 CMakeSettings.json
 .vscode
+.idea/
