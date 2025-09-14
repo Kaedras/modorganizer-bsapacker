@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.16)
 
+if(UNIX)
+    find_package(OpenGL REQUIRED)
+endif()
+
 find_package(Qt6 COMPONENTS Concurrent)
 find_path(BEXT_DI_INCLUDE_DIRS "boost/di.hpp")
 find_package(mo2-cmake CONFIG REQUIRED)
