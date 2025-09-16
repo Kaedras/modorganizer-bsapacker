@@ -46,7 +46,7 @@ namespace libbsarch
         }
 
         std::filesystem::path path_in_archive;
-        std::variant<std::vector<char>, std::string> data;
+        std::variant<std::vector<char>, std::filesystem::path> data;
     };
 
     class libbsarchppWrapper

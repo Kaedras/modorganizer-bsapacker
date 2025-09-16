@@ -104,7 +104,7 @@ namespace libbsarch
                 }
             case 1:
                 {
-                    const auto& file_path = std::get<std::string>(file.data);
+                    const auto& file_path = std::get<std::filesystem::path>(file.data);
                     add_file_from_disk(file.path_in_archive, file_path);
                 }
             }
