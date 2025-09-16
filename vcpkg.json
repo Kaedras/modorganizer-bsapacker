@@ -26,7 +26,7 @@
       {
         "kind": "git",
         "repository": "https://github.com/Kaedras/vcpkg-registry",
-        "baseline": "2db84ee1bdc7859be5a4b118582f8eea84a0ca5f",
+        "baseline": "979a3653663ae6fb9a0e40ad2bd5a86e1574ad6d",
         "packages": ["mo2-*", "libbsarchpp"]
       }
     ]
