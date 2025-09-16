@@ -2,6 +2,7 @@
 #define LIBBSARCHPPWRAPPER_H
 
 #include <filesystem>
+#include <utility>
 #include <vector>
 #include <variant>
 #include <libbsarchpp/Bsa.h>
@@ -18,11 +19,11 @@ namespace libbsarch
             path_in_archive = relative(path_in_archive, root_dir);
         }
 
-        disk_blob(const std::filesystem::path& path_in_archive,
-                  const std::filesystem::path& absolute_path,
+        disk_blob(std::filesystem::path  path_in_archive,
+                  std::filesystem::path  absolute_path,
                   [[maybe_unused]] bool decoy_parameter)
-            : path_in_archive(path_in_archive)
-              , path_on_disk(absolute_path)
+            : path_in_archive(std::move(path_in_archive))
+              , path_on_disk(std::move(absolute_path))
         {
         }
 
