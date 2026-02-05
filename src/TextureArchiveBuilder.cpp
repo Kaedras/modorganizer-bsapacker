@@ -14,7 +14,7 @@ namespace BsaPacker
 	const qint64 TextureArchiveBuilder::SIZE_LIMIT = (qint64)1024 * 1024 * 1024 * 4;
 
 	TextureArchiveBuilder::TextureArchiveBuilder(const IArchiveBuilderHelper* archiveBuilderHelper, const QDir& rootDir, const libbsarchpp::ArchiveType& type)
-		: m_ArchiveBuilderHelper(archiveBuilderHelper), m_RootDirectory(rootDir), m_ArchiveType(type)
+		: m_ArchiveBuilderHelper(archiveBuilderHelper), m_ArchiveType(type), m_RootDirectory(rootDir)
 	{
 		this->m_Cancelled = false;
 		this->m_Archives.emplace_back(std::make_unique<libbsarchppWrapper>(this->m_ArchiveType));

@@ -1,6 +1,7 @@
 #include <bsapacker/ArchiveAutoService.h>
+#include <QCoreApplication>
 #include <QProgressDialog>
-#include <QtConcurrent>
+#include <QtConcurrent/QtConcurrentRun>
 #include <QLabel>
 
 namespace BsaPacker
@@ -10,7 +11,7 @@ namespace BsaPacker
 		QProgressDialog savingDialog;
 		savingDialog.setWindowFlags(savingDialog.windowFlags() & ~Qt::WindowCloseButtonHint);
 		savingDialog.setWindowTitle(QObject::tr("Writing Archive"));
-		savingDialog.setCancelButton(0);
+		savingDialog.setCancelButton(nullptr);
 		QLabel text;
 		text.setText(QObject::tr("Writing %1").arg(archiveName));
 		savingDialog.setLabel(&text);
@@ -19,7 +20,7 @@ namespace BsaPacker
 		auto future = QtConcurrent::run([=]() -> bool {
 			try {
 				archive->save_to_disk(archiveName.toStdString());
-			} catch (std::exception e) {
+			} catch (std::exception&) {
 				return false;
 			}
 			return true;
