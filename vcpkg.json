@@ -3,7 +3,7 @@
   "features": {
     "standalone": {
       "description": "Build Standalone.",
-      "dependencies": ["mo2-cmake"]
+      "dependencies": ["mo2-cmake", "mo2-uibase"]
     },
     "testing": {
       "description": "Build BSA Packer tests.",
