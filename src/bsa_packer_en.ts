@@ -18,6 +18,21 @@
 <context>
     <name>QObject</name>
     <message>
+        <location filename="ArchiveAutoService.cpp" line="13"/>
+        <source>Writing Archive</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="ArchiveAutoService.cpp" line="16"/>
+        <source>Writing %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="BsaPackerWorker.cpp" line="53"/>
+        <source>Created archive(s):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="ModDtoFactory.cpp" line="58"/>
         <source>Archive name (no file extension):</source>
         <translation type="unfinished"></translation>
@@ -60,27 +75,11 @@
     <message>
         <location filename="SettingsService.cpp" line="14"/>
         <source>Specify a semi-colon separated list of file extensions to ignore when packing.</source>
-        <oldsource>Specify a semi-colon seperated list of file extensions to ignore when packing.</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="SettingsService.cpp" line="15"/>
         <source>Compress archives if they do not contain incompressible files. Texture archives for Fallout 4 and Starfield will always be compressed. Morrowind archives will never be compressed.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ArchiveAutoService.cpp" line="12"/>
-        <source>Writing Archive</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="ArchiveAutoService.cpp" line="15"/>
-        <source>Writing %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="BsaPackerWorker.cpp" line="53"/>
-        <source>Created archive(s):</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
