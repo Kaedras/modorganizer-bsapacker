@@ -8,6 +8,7 @@ class MockOrganizer : public IOrganizer
 public:
 	// clang-format off
 	MOCK_METHOD(IModRepositoryBridge*, createNexusBridge, (), (const, override));
+        MOCK_METHOD(QString, instanceName, (), (const, override));
 	MOCK_METHOD(QString, profileName, (), (const, override));
 	MOCK_METHOD(QString, profilePath, (), (const, override));
 	MOCK_METHOD(QString, downloadsPath, (), (const, override));
@@ -34,10 +35,14 @@ public:
 	MOCK_METHOD(QStringList, getFileOrigins, (const QString &fileName) ,(const, override));
 	MOCK_METHOD(QList<FileInfo>, findFileInfos, (const QString &path, const std::function<bool(const FileInfo&)> &filter), (const, override));
 	MOCK_METHOD(std::shared_ptr<const IFileTree>, virtualFileTree, (), (const, override));
+        MOCK_METHOD(IInstanceManager*, instanceManager, (), (const, override));
 	MOCK_METHOD(MOBase::IDownloadManager*, downloadManager, (), (const, override));
 	MOCK_METHOD(MOBase::IPluginList*, pluginList, (), (const, override));
 	MOCK_METHOD(MOBase::IModList*, modList, (), (const, override));
-	MOCK_METHOD(MOBase::IProfile*, profile, (), (const, override));
+        MOCK_METHOD(IExecutablesList*, executablesList, (), (const, override));
+	MOCK_METHOD(std::shared_ptr<IProfile>, profile, (), (const, override));
+        MOCK_METHOD(QStringList, profileNames, (), (const, override));
+	MOCK_METHOD(std::shared_ptr<const IProfile>, getProfile, (const QString&), (const, override));
 	MOCK_METHOD(IGameFeatures*, gameFeatures, (), (const, override));
 	MOCK_METHOD(HANDLE, startApplication, (const QString &executable, const QStringList &args, const QString &cwd, const QString &profile, const QString &forcedCustomOverwrite, bool ignoreCustomOverwrite), (override));
 	MOCK_METHOD(bool, waitForApplication, (HANDLE handle, bool refresh, LPDWORD exitCode), (const, override));
