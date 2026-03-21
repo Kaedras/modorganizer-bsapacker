@@ -5,12 +5,11 @@ find_path(BEXT_DI_INCLUDE_DIRS "boost/di.hpp")
 find_package(mo2-cmake CONFIG REQUIRED)
 find_package(mo2-uibase CONFIG REQUIRED)
 find_package(libbsarchpp CONFIG REQUIRED)
-find_package(directx-headers CONFIG REQUIRED)
 
 add_library(bsa_packer SHARED)
 mo2_configure_plugin(bsa_packer WARNINGS OFF)
 
-target_link_libraries(bsa_packer PUBLIC mo2::uibase Qt6::Concurrent libbsarchpp Microsoft::DirectX-Headers)
+target_link_libraries(bsa_packer PUBLIC mo2::uibase Qt6::Concurrent libbsarchpp)
 target_include_directories(bsa_packer PUBLIC ${BEXT_DI_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR})
 target_compile_definitions(bsa_packer PRIVATE BSAPACKER_LIBRARY)
 

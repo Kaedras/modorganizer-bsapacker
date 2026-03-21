@@ -1,5 +1,5 @@
 {
-  "dependencies": ["libbsarchpp", "directx-headers", "bext-di"],
+  "dependencies": ["libbsarchpp", "bext-di"],
   "features": {
     "standalone": {
       "description": "Build Standalone.",
@@ -26,7 +26,7 @@
       {
         "kind": "git",
         "repository": "https://github.com/Kaedras/vcpkg-registry",
-        "baseline": "fcd0b6c5ee2eaff6f8feafe0e4b74c5256ac6289",
+        "baseline": "f0078ff57f562c78f668dafa32a30862333f04f7",
         "packages": ["mo2-*", "libbsarchpp"]
       }
     ]
