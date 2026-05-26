@@ -1,33 +1,48 @@
 {
-  "dependencies": ["libbsarchpp", "bext-di"],
+  "dependencies": [
+    "libbsarchpp",
+    "bext-di"
+  ],
   "features": {
     "standalone": {
       "description": "Build Standalone.",
-      "dependencies": ["mo2-cmake", "mo2-uibase"]
+      "dependencies": [
+        "mo2-cmake",
+        "mo2-uibase"
+      ]
     },
     "testing": {
       "description": "Build BSA Packer tests.",
-      "dependencies": ["gtest"]
+      "dependencies": [
+        "gtest"
+      ]
     }
   },
   "vcpkg-configuration": {
     "default-registry": {
       "kind": "git",
-      "repository": "https://github.com/Microsoft/vcpkg",
-      "baseline": "294f76666c3000630d828703e675814c05a4fd43"
+      "baseline": "294f76666c3000630d828703e675814c05a4fd43",
+      "repository": "https://github.com/Microsoft/vcpkg"
     },
     "registries": [
       {
         "kind": "git",
-        "repository": "https://github.com/Microsoft/vcpkg",
         "baseline": "294f76666c3000630d828703e675814c05a4fd43",
-        "packages": ["boost*", "boost-*", "bext-*"]
+        "repository": "https://github.com/Microsoft/vcpkg",
+        "packages": [
+          "boost*",
+          "boost-*",
+          "bext-*"
+        ]
       },
       {
         "kind": "git",
+        "baseline": "0bcd2b144023b0d422c363c221b828a35c90fbd0",
         "repository": "https://github.com/Kaedras/vcpkg-registry",
-        "baseline": "f0078ff57f562c78f668dafa32a30862333f04f7",
-        "packages": ["mo2-*", "libbsarchpp"]
+        "packages": [
+          "mo2-*",
+          "libbsarchpp"
+        ]
       }
     ]
   }
